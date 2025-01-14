@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+*,*::after,*::before{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+html{
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background-color: #2E3E53;
+}
+
+.container{
+    width: 77%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+main{
+    width:1220px;
+    margin: 40px auto 0;
+    background-color: #283646;
+    border-radius: 25px;
+    height: 600px;
+    box-shadow:  0px 2px 12px 3px #2a3747;
+}
+
+header{
+    background-color: #1E2936;
+    padding: 20px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+header nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo img{
+    width: 60px;
+}
+
+header nav .left{
+    display: flex;
+    flex-direction: column;
+}
+
+.left h2 {
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.left h6 {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    font-weight: 400;
+    margin: 5px 0 0 0;
+}
+
+.content{
+    padding: 10px 0 0 0;
+    color: white;
+    height: 472px;;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    
+}
+
+.title{
+    font-size: 24px;
+    font-weight: 500;
+    margin: 20px 0  ;
+}
+
+.cardtitle{
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 0 10px 0;
+}
+.content p{
+    font-size: 14px;
+}
+.section{
+    margin: 0 0 60px 0;
+}
+.allcards{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px ;
+}
+.card{
+    width: 350px;
+    padding: 20px;
+    background-color: #2E3E53;
+    box-shadow: 0px 3px 10px 2px #283440;
+    border-radius: 6px;
+    color: white;
+}
+
+.content::-webkit-scrollbar {
+    width: 6px; /* Specify the width of the scrollbar */
+  }
+
+  /* Define the styles for the scrollbar handle or thumb */
+.content::-webkit-scrollbar-thumb {
+    background-color: #888; /* Specify the color of the scrollbar thumb */
+    border-radius: 6px; /* Specify the radius of the scrollbar thumb */
+  }
+
+  /* Define the styles for the scrollbar track when the handle is being hovered */
+.content::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Specify the color of the scrollbar thumb on hover */
+}
+
+.forLogo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-text {
+    font-size: 28px;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.logo-text .highlight {
+    color: #51BB89;
+    font-weight: 700;
+}
+
+.logo-text:hover .highlight {
+    text-shadow: 0 0 15px rgba(81, 187, 137, 0.5);
+}

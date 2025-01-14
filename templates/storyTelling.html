@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPTData - Story Telling</title>
+    <link rel="stylesheet" href="{% static '/css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static '/css/chatpdf.css' %}">
+
+</head> 
+<body>
+    <main>
+        <header>
+            <div class="container">
+                <nav>
+                    <div class="forLogo">
+                        <span class="logo-text">GPT<span class="highlight">Data</span></span>
+                    </div>
+                    <div class="left">
+                        <h2>GPTData</h2>
+                        <h6>Administration</h6>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <div class="content">
+            <div class="container">
+                <div class="allsections">
+                    <div class="upload">
+                        <form id="pdfUploadForm" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <label for="id_pdf_file" class="custom-file-upload">
+                                Choose Image
+                            </label>
+                            <input type="file" name="image" id="id_pdf_file" accept="image/*">
+                    
+                            <button type="submit">Upload Image</button>
+                        </form>
+                        <div id="message"></div> 
+                        <div id="response"></div>
+                    </div>
+                    <div class="chat">
+                        <div id="chatMessages"></div>                  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        chatMessagesDiv = document.getElementById('chatMessages');
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('pdfUploadForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                var f = new FormData(this);
+                f.append('submit', this.name);
+                fetch('{% url "storyTelling" %}', {
+                    method: 'POST',
+                    body: f,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    appendMessage2('GPTData', data.res)
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('message').textContent = 'Error uploading file.';
+                });
+            });
+        });
+
+        
+        function appendMessage(sender, message) {
+            var messageDiv = document.createElement('div');
+            messageDiv.innerHTML = '<span>' + sender + ':</span> ' + message;
+            chatMessagesDiv.appendChild(messageDiv);
+        }
+
+        function appendMessage2(sender, message) {
+            var responseDiv = document.createElement('div');
+            responseDiv.classList.add('response');
+            responseDiv.innerHTML = '<span>' + sender + ':</span> ' + message;
+            chatMessagesDiv.appendChild(responseDiv);
+        } 
+    </script>
+</body>
+</html>

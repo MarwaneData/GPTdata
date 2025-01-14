@@ -1,0 +1,81 @@
+#message {
+    margin-top: 15px;
+    color: #008CBA;
+    font-weight: bold;
+}
+input#messageInput {
+    width: 87%;
+    padding: 13px;
+    background: transparent;
+    border: 2px solid #2e3e53;
+    border-radius: 4px;
+    color: white;
+}
+form#pdfUploadForm {
+    margin: 0 0 0 132px;
+}
+.chat {
+    width: 71%;
+}
+div#chatForm {
+    width: 100%;
+    margin: 20px 0;
+}
+.noteDescription {
+    width: 26%;
+    height: 172px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #1e2936;
+}
+.allsections {
+    height: 400px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+div#chatMessages {
+    width: 100%;
+    border: 2px solid #2e3e53;
+    padding: 20px;
+    height: 277px;
+    border-radius: 7px;
+    overflow-y: scroll;
+}
+.sectionTitle{
+    font-size: 20px;
+    font-weight: 400;
+    margin:  0 0 20px 0;
+}
+.sendMessage{
+    padding: 11px 19px;
+    font-size: 18px;
+    border: 0;
+    cursor: pointer;
+    background: #51bb89;
+    color: #29313c;
+    border-radius: 3px;
+}
+.response {
+    padding: 12px 17px;
+    background: #2e3e53;
+    border-radius: 3px;
+    margin: 20px;
+}
+span{
+    color: #dd622c;
+    font-size: 17px;
+    margin: 0 5px 0 0;
+}
+.response span {
+    color: aquamarine;
+    font-size: 17px;
+    margin: 0 5px 0 0;
+}
+div#chatMessages::-webkit-scrollbar {
+    width: 6px;
+}
+
+div#chatMessages::-webkit-scrollbar-thumb {
+    background: #445970;border-radius: 5px;
+}

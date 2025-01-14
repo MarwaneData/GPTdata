@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPTData - Visualization</title>
+    <link rel="stylesheet" href="{% static '/css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static '/css/analyzer.css' %}">
+
+</head> 
+<body>
+    <main>
+        <header>
+            <div class="container">
+                <nav>
+                    <div class="forLogo">
+                        <span class="logo-text">GPT<span class="highlight">Data</span></span>
+                    </div>
+                    <div class="left">
+                        <h2>GPTData</h2>
+                        <h6>Administration</h6>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <div class="content">
+            <div class="container">
+                <div class="allsections">
+                    <div class="content2">
+                        <div class="upload">
+                            <form id="pdfUploadForm" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <label for="id_pdf_file" class="custom-file-upload">
+                                    Choose Csv File
+                                </label>
+                                <input type="file" name="file" id="id_pdf_file" accept=".csv">
+                        
+                                <button type="submit">Upload Data</button>
+                            </form>
+                        </div>
+                        <div class="chat">
+                            <div id="chatMessages" style="height: 366px;"></div>                  
+                        </div>
+                    </div>
+                    <div class="noteDescription">
+                        <div class="contentdescription">
+                            <h5 style="font-size: 18px; font-weight: 400;">Notes:</h5>
+                            <div>
+                                <p style="margin: 10px;">1. Upload a CSV File</p>
+                                <p  style="margin: 10px;">2. Will based on Columns (also types)</p>
+                                <p  style="margin: 10px;">3. Take a sample row</p>
+                                <p  style="margin: 10px;">4. Start suggesting </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        chatMessagesDiv = document.getElementById('chatMessages');
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('pdfUploadForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                var f = new FormData(this);
+                f.append('submit', this.name);
+                fetch('{% url "visualize" %}', {
+                    method: 'POST',
+                    body: f,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    appendMessage2('GPTData', data.res)
+                })
+                .catch(error => {
+                    appendMessage2('GPTData', "Error uploading Csv file")
+
+                });
+            });
+        });
+        function appendMessage2(sender, message) {
+            var responseDiv = document.createElement('div');
+            responseDiv.classList.add('response');
+            responseDiv.innerHTML = '<span>' + sender + ':</span> ' + message.replace(/\n/g, '<br>');;
+            chatMessagesDiv.appendChild(responseDiv);
+        } 
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+# Environment files
+.env
+venv/
+env/
+*.pyc
+__pycache__/
+
+# Uploaded files
+*.csv
+uploads/
+media/
+
+# Database
+db.sqlite3
+
+# IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS specific files
+.DS_Store
+Thumbs.db 

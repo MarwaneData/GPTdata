@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPTData - Dashboard</title>
+    <link rel="stylesheet" href="{% static '/css/dashboard.css' %}">
+
+</head> 
+<body>
+    <main>
+        <header>
+            <div class="container">
+                <nav>
+                    <div class="forLogo">
+                        <span class="logo-text">GPT<span class="highlight">Data</span></span>
+                    </div>
+                    <div class="left">
+                        <h2>GPTData</h2>
+                        <h6>Administration</h6>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <div class="content">
+            <div class="container">
+                <div class="allsections">
+                    
+                    <div class="section">
+                        <h2 class="title">Data Exploration & Analysis</h2>
+                        <div class="allcards">
+                            <a href=" {% url 'analyzer' %} ">
+                                <div class="card">
+                                    <h3 class="cardtitle">Analyze Sample Data</h3>
+                                    <p>Upload your data for a GPT analysis, Unlock hidden insights.</p>
+                                </div>
+                            </a>
+                            <a href=" {% url 'visualize' %} ">
+                                <div class="card">
+                                    <h3 class="cardtitle">Visualization Suggester</h3>
+                                    <p>Upload your data and let Visualization-Suggester show you the way</p>
+                                </div>
+                            </a>
+                            <a href=" {% url 'color' %} ">
+                                <div class="card">
+                                    <h3 class="cardtitle">Color Generatore</h3>
+                                    <p> AI-powered palettes inspired by your project's description</p>
+                                </div>
+                            </a>
+                            
+                        </div>
+                    </div>
+                    <div class="section">
+                        <h2 class="title">Story Telling & Text generation</h2>
+                        <div class="allcards">
+                            <a href=" {% url 'chatPdf'  %} ">
+                                <div class="card">
+                                    <h3 class="cardtitle">Report Information Extractor</h3>
+                                    <p>Upload your report, Ask your questions and watch the insights bloom!</p>
+                                </div>
+                            </a>
+                            <a href=" {% url 'storyTelling'  %} ">
+                                <div class="card">
+                                    <h3 class="cardtitle">Story teller</h3>
+                                    <p>Make your charts and dashboards sing for your managers, Get you Story Telling.</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <h2 class="title">Great Query Generatore</h2>
+                        <div class="allcards">
+                            <a href=" {% url 'dax' %} ">
+                                <div class="card">
+                                    <h3 class="cardtitle">Dax Generatore</h3>
+                                    <p>Let AI handle your DAX, you focus on the results</p>
+                                </div>
+                            </a>
+                            <a href=" {% url 'sql' %} ">
+                                <div class="card">
+                                    <h3 class="cardtitle">SQL Quesry Generatore</h3>
+                                    <p>Ai Generate perfect queries based on your descriptions.
+                                    </p>
+                                </div>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+</body>
+</html>

@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+*,*::after,*::before{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    font-family: 'Poppins', sans-serif;
+}
+header{
+    background-color: #1E2936;
+    padding: 20px 0;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+.footer{
+    background-color: #1E2936;
+    padding: 15px 0;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 300;
+    font-size: 16px;
+    max-width: 1500px;
+    margin: 0 auto;
+    letter-spacing: 0.5px;
+}
+.footer .heart {
+    color: #ff4d4d;
+    display: inline-block;
+    animation: heartbeat 1.5s infinite;
+    margin: 0 3px;
+}
+.footer .author {
+    color: #51BB89;
+    font-weight: 500;
+    position: relative;
+}
+.footer .author::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #51BB89;
+    transition: width 0.3s ease;
+}
+.footer .author:hover::after {
+    width: 100%;
+}
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+header img {
+    width: 65px;
+}
+.loginPart{
+    display: flex;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    cursor: pointer;
+
+}
+.loginPart img{
+    width: 30px;
+    margin: 0 0 0 7px;
+}
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.container{
+    width: 77%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+main{
+    max-width: 1500px;
+    margin: 0 auto;
+    background: url('../images/background.jpg');
+    padding: 28px 0;
+    position: relative;
+    overflow: hidden;
+}
+.right{
+    display: flex;
+    flex-direction: row-reverse;
+}
+.right div{
+    width: 300px;
+    height: 5px;
+    background: #51BB89;
+    margin: 70px 0;
+}
+
+.left div{
+    width: 300px;
+    height: 5px;
+    background: #DD622C;
+    margin: 70px 0;
+}
+.description{
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.main-heading {
+    font-size: 42px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #ffffff, #51BB89);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 10px rgba(81, 187, 137, 0.2);
+}
+
+.description p {
+    font-size: 18px;
+    line-height: 1.6;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 30px;
+}
+
+.upload{
+    margin: 40px auto;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 8px 20px;
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+    color: white;
+    z-index: 1;
+    cursor: pointer;
+}
+.upload::after{
+    width: 100%;
+    height: 100%;
+    content: '';
+    background: #1E242C;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    opacity: 0.8;
+    border-radius: 5px;
+}
+.upload img{
+    margin: 0;
+    padding: 0;
+}
+
+.toUpload {
+    position: absolute;
+    top: -70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #1E2936;
+    width: 500px;
+    height: 350px;
+    box-shadow: 0 12px 25px 4px #29313c;
+    display: none;    
+    transition: all .3s ease;
+}
+.headerUpload{
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    background-color: #51bb89;
+}
+label {
+    display: block;
+    text-align: center;
+    padding: 55px;
+    background: #29313c;
+    width: 90%;
+    margin: 15px auto;
+    color: #ababab;
+    font-size: 19px;
+    font-weight: 500;
+    cursor: pointer;
+
+}
+.selectedFileName{
+    text-align: center;
+    color: white;
+}
+input[type="submit"] {
+    margin: 30px auto;
+    display: block;
+    padding: 11px 43px;
+    font-size: 20px;
+    border: 0;
+    cursor: pointer;
+    background: #51bb89;
+    color: #29313c;
+}
+.login {
+    width: 300px;
+    background: rgba(30, 41, 54, 0.95);
+    padding: 30px 25px;
+    position: absolute;
+    top: 0%;
+    right: -40%;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.login.active {
+    top: 0%;
+    right: 154px;
+    opacity: 1;
+    visibility: visible;
+    z-index: 100;
+}
+
+.input {
+    padding: 12px 15px;
+    width: 100%;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    margin: 0 0 15px 0;
+    color: white;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #51BB89;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.login input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: #51BB89;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.login input[type="submit"]:hover {
+    background: #45a077;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(81, 187, 137, 0.2);
+}
+
+.login input[type="submit"]:active {
+    transform: translateY(0);
+}
+
+body::-webkit-scrollbar {
+    width: 6px; /* Specify the width of the scrollbar */
+  }
+
+  /* Define the styles for the scrollbar handle or thumb */
+body::-webkit-scrollbar-thumb {
+    background-color: #29313c; /* Specify the color of the scrollbar thumb */
+    border-radius: 6px; /* Specify the radius of the scrollbar thumb */
+  }
+
+  /* Define the styles for the scrollbar track when the handle is being hovered */
+body::-webkit-scrollbar-thumb:hover {
+    background-color: #1E242C; /* Specify the color of the scrollbar thumb on hover */
+}
+
+.forLogo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-text {
+    font-size: 28px;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.logo-text .highlight {
+    color: #51BB89;
+    font-weight: 700;
+}

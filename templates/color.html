@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPTData - Color Generator</title>
+    <link rel="stylesheet" href="{% static '/css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static '/css/color.css' %}">
+
+</head> 
+
+<body>
+    <main>
+        <header>
+            <div class="container">
+                <nav>
+                    <div class="forLogo">
+                        <span class="logo-text">GPT<span class="highlight">Data</span></span>
+                    </div>
+                    <div class="left">
+                        <h2>GPTData</h2>
+                        <h6>Administration</h6>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <div class="content">
+            <div class="container">
+                <h2 style="font-size: 20px; margin: 20px 0 20px 0 ; font-weight: 400;">Ai Color Generatore</h2>
+                <div class="allsections">
+                    <div class="chat">
+                        <div id="chatMessages"></div>
+                        <div id="chatForm">
+                            <form id="messageForm" method="post">
+                                {% csrf_token %}
+                                <input type="text" name="message" id="messageInput" placeholder="Describe you Domain, how many chart, and colors">
+                                <input type="submit" value="Submit" class="sendMessage" name="message">
+                            </form>
+                        </div>                    
+                    </div>
+                    <div id="palettes-container" style="padding: 20px;">Colors will apear here</div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        chatMessagesDiv = document.getElementById('chatMessages');
+        document.getElementById("messageForm").addEventListener("submit", function(event) {
+            message = document.getElementById('messageInput')
+            if(message.value.length > 0){
+                event.preventDefault(); 
+                var formData = new FormData(event.target);
+                appendMessage("You",message.value )
+                fetch("{% url 'color' %}", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    appendMessage2('GPTData', data.res)
+                    createPaletteElements(data.colors)
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+                message.value = ''
+            }
+            else{
+                event.preventDefault(); 
+                appendMessage2('GPTData', 'Please enter a valid question')
+            }
+        });
+
+        function createPaletteElements(paletteData) {
+            var container = document.getElementById("palettes-container");
+            container.innerHTML = '';  
+
+            paletteData.forEach(function (palette, index) {
+                var paletteDiv = document.createElement("div");
+                paletteDiv.className = "palette";
+
+                var heading = document.createElement("h3");
+                heading.textContent = (index + 1);
+                paletteDiv.appendChild(heading);
+
+                palette.forEach(function (color) {
+                    var colorDiv = document.createElement("div");
+                    colorDiv.className = "color";
+                    colorDiv.style.backgroundColor = color;
+                    paletteDiv.appendChild(colorDiv);
+                });
+
+                container.appendChild(paletteDiv);
+            });
+        }
+        function appendMessage(sender, message) {
+            var messageDiv = document.createElement('div');
+            messageDiv.innerHTML = '<span>' + sender + ':</span> ' + message;
+            chatMessagesDiv.appendChild(messageDiv);
+        }
+
+        function appendMessage2(sender, message) {
+            var responseDiv = document.createElement('div');
+            responseDiv.classList.add('response');
+            responseDiv.innerHTML = '<span>' + sender + ':</span> ' + message;
+            chatMessagesDiv.appendChild(responseDiv);
+        }
+            
+        
+    </script>
+</body>
+</html>

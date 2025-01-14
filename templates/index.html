@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPTData - AI-Powered Data Assistant</title>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static '/images/favicon.jpg' %}">
+</head> 
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="forLogo">
+                    <span class="logo-text">GPT<span class="highlight">Data</span></span>
+                </div>
+                <div class="loginPart">
+                    <p>Login</p>
+                    <img src="{% static 'images/loinIcon.png' %}" alt="">
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="content">
+            <div class="container">
+                <div class="right">
+                    <div></div>
+                </div>
+                <div class="description">
+                    <h1 class="main-heading">Your AI-Powered Data Assistant</h1>
+                    <p>Transform the way you understand reports with GPTData. Upload any document, ask questions, and get instant, intelligent answers. Making data analysis intuitive, storytelling effortless, and query writing automatic.</p>
+                </div>
+                <div class="uploading" style="display: none;">
+                    <div class="upload">
+                        <img src="{% static 'images/upload.png' %}" alt="">
+                        <p>Upload CV</p>
+                    </div>
+                </div>
+                <div class="left">
+                    <div></div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="login">
+            <form method="post">
+                {% csrf_token %} 
+                <input type="text" class="input" name="username" placeholder="Username" required> 
+                <input type="password" class="input" name="password" placeholder="Password" required>
+                <input type="submit" value="Login" name="login">
+            </form>
+        </div>
+    </main>
+    
+    <div class="toUpload">
+        <div class="headerUpload">Upload To Continue</div>
+        <form method="POST" enctype='multipart/form-data'>
+            {% csrf_token %} 
+            <input type="file" name="resume" id="upload" hidden accept=".pdf" onchange="updateFileName(this)"/>
+            <label for="upload">Choose file</label>
+            <p class="selectedFileName"></p>
+            <input type="submit" value="Goo" name="cv">
+        </form>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <p>Created with <span class="heart">❤</span> by <span class="author">Marwane</span></p>
+        </div>
+    </div>
+    <script>
+        uploading = document.querySelector('.upload')
+        upload = document.querySelector('.toUpload')
+        loginButton = document.querySelector('.loginPart')
+        login = document.querySelector('.login')
+        uploading.onclick = function(){
+            upload.style.display = "block";
+            upload.style.top = "50%";
+            upload.style.zIndex= "10";
+        }
+        loginButton.onclick = ()=>{ login.classList.toggle('active')}
+        function updateFileName(input) {
+            const selectedFileName = document.querySelector('.selectedFileName');
+            if (input.files.length > 0) {
+                selectedFileName.textContent = `Selected File: ${input.files[0].name}`;
+            } else {
+                selectedFileName.textContent = '';
+            }
+        }
+
+
+    </script>
+    
+</body>
+</html>

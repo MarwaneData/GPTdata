@@ -1,0 +1,98 @@
+label {
+    display: block;            
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    margin: 0 10px 0 0 ;
+    padding: 10px 15px;
+    color: #1E2936;
+    border-radius: 3px;
+    font-size: 16px;
+    border: 0;
+    cursor: pointer;
+    background: #51bb89;
+}
+
+.custom-file-upload:hover {
+    background-color: #3fa073;
+}
+
+button {
+    background-color: transparent;
+    font-size: 16px;
+    color: #fff;
+    padding: 12px 15px;
+    border: 1px solid white;
+    border-radius: 3px;
+    cursor: pointer;
+}
+#message {
+    margin-top: 15px;
+    color: #008CBA;
+    font-weight: bold;
+}
+input#messageInput {
+    width: 88%;
+    padding: 13px;
+    background: transparent;
+    border: 2px solid #2e3e53;
+    border-radius: 4px;
+    color: white;
+}
+form#pdfUploadForm {
+    margin: 0 0 0 132px;
+}
+div#chatForm {
+    width: 76%;
+    margin: 20px auto;
+}
+.allsections {
+    height: 400px;
+    position: relative;
+}
+div#chatMessages {
+    width: 76%;
+    margin: 0 auto;
+    border: 2px solid #2e3e53;
+    padding: 20px;
+    height: 277px;
+    border-radius: 7px;
+    overflow-y: scroll;
+}
+.sendMessage{
+    padding: 11px 19px;
+    font-size: 18px;
+    border: 0;
+    cursor: pointer;
+    background: #51bb89;
+    color: #29313c;
+    border-radius: 3px;
+}
+.response {
+    padding: 12px 17px;
+    background: #2e3e53;
+    border-radius: 3px;
+    margin: 20px;
+}
+span{
+    color: #dd622c;
+    font-size: 17px;
+    margin: 0 5px 0 0;
+}
+.response span {
+    color: aquamarine;
+    font-size: 17px;
+    margin: 0 5px 0 0;
+}
+div#chatMessages::-webkit-scrollbar {
+    width: 6px;
+}
+
+div#chatMessages::-webkit-scrollbar-thumb {
+    background: #445970;border-radius: 5px;
+}

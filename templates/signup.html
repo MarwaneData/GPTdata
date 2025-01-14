@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bi Brain</title>
+    <link rel="stylesheet" href="{% static '/css/signup.css' %}">
+
+</head> 
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="forLogo">
+                    <img src=" {% static '/images/logo.png' %}" alt="Career Leap">
+                </div>
+                <div class="loginPart">
+                    <p>Login</p>
+                    <img src="{% static 'images/loinIcon.png' %}" alt="">
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="content">
+            <div class="container">
+                <div class="right">
+                    <div></div>
+                </div>
+                <div class="formContent">
+                    <form action="" method="POST">
+                        {% csrf_token %} 
+                        <div class="allInformations">
+                            <div class="basicInformation">
+                                <div>
+                                    <label for="">Full Name</label> 
+                                    <input type="text" id="fullName" name="fullName" value="{{data.Full_Name}}" />
+                                </div>
+                                <div>
+                                    <label for="">Email</label>
+                                    <input type="text" name="email" value="{{data.Email}}">
+                                </div>
+                                <div>
+                                    <label for="">Phone Number</label>
+                                    <input type="text" name="phone" value="{{data.phone_number}}">
+                                </div>
+                                <div>
+                                    <label for="">Location</label>
+                                    <input type="text" name="location" value="{{data.location}}">
+                                </div>
+                                <div>
+                                    <label for="">About you</label>
+                                    <textarea name="description" id="description" cols="30">{{data.Description}}</textarea>
+                                </div>
+                                
+                            </div>
+                            <div class="midlInformation">
+                                <div>
+                                    <label for="">Level Education</label>
+                                    <input type="text" name="education" value="{{data.Last_level_of_Education}}">
+                                </div>
+                                <div>
+                                    <label for="">Last Company Experience</label>
+                                    <input type="text" name="lexperience" value="{{data.Name_Company_Experience}}">
+                                </div>
+                                <div>
+                                    <label for="">Years of Experience</label>
+                                    <input type="text" name="experience" value="{{data.Total_years_of_Experience}}">
+                                </div>
+                                <div>
+                                    <label for="">Disired Job</label>
+                                    <input type="text" name="job" >
+                                </div>
+                                <div>
+                                    <label for="">Disired location</label>
+                                    <input type="text" name="locationJob">
+                                </div>
+                                
+                            </div>
+                            <div class="importantInformation">
+                                <div>
+                                    <label for="">Skills</label>
+                                    <textarea name="skills" id="skills" cols="30">{{data.skills}}</textarea>
+                                </div>
+                                <p class="note">CV data is handled with care at CareerLeap</p> 
+                                <p class="note2">CareerLeap optimizes your profile for better matches</p> 
+                                <p class="next">Next</p>
+    
+                            </div>
+                        </div>
+                        <div class="setPassword">
+                            <p>Please Set up Your Password</p>
+                            <div>
+                                <label for="">Password</label>
+                                <input type="password" name="password1" id="">
+                            </div>
+                            <div>
+                                <label for="">Confirm</label>
+                                <input type="password" name="password2" id="">
+                            </div>
+                            <input class="signin" type="submit" value="Build Career" name="buildCareer">
+                        </div>
+                    </form>
+                </div>
+                <div class="left">
+                    <div></div>
+                </div>
+                
+            </div>
+        </div>
+    </main>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <p>Made by Marwane Mezzane for SBI Challenge.</p>
+        </div>
+    </div>
+    <script>
+        next = document.querySelector('.next')
+        allinformation = document.querySelector('.allInformations')
+        secondForm = document.querySelector('.setPassword')
+        next.onclick = function(){
+            allinformation.style.display = "none";
+            allinformation.style.right = "-50%";
+            secondForm.style.display = "block";
+        }
+        function updateFileName(input) {
+            const selectedFileName = document.querySelector('.selectedFileName');
+            if (input.files.length > 0) {
+                selectedFileName.textContent = `Selected File: ${input.files[0].name}`;
+            } else {
+                selectedFileName.textContent = '';
+            }
+        }
+
+        loginButton = document.querySelector('.loginPart')
+        login = document.querySelector('.login')
+    
+        loginButton.onclick = ()=>{ login.classList.toggle('active')}
+        
+    </script>
+    
+</body>
+</html>

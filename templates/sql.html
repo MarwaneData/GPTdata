@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPTData - SQL Generator</title>
+    <link rel="stylesheet" href="{% static '/css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static '/css/reportgenerator.css' %}">
+
+</head> 
+<body>
+    <main>
+        <header>
+            <div class="container">
+                <nav>
+                    <div class="forLogo">
+                        <span class="logo-text">GPT<span class="highlight">Data</span></span>
+                    </div>
+                    <div class="left">
+                        <h2>GPTData</h2>
+                        <h6>Administration</h6>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <div class="content">
+            <div class="container">
+                <h2 class="sectionTitle">AI SQL Generator</h2>
+                <div class="allsections">
+                    <div class="chat">
+                        <div id="chatMessages">
+                            <div class="response"><span>GPTData: </span>I'm SQL Query Generator, ready to turn your data into clear, impactful stories that drive results. Let's work together to create powerful SQL Queries</div>
+                        </div>
+                        <div id="chatForm">
+                            <form id="messageForm" method="post">
+                                {% csrf_token %}
+                                <input type="text" name="message" id="messageInput" placeholder="Type your message...">
+                                <input type="submit" value="Submit" class="sendMessage" name="submit">
+                            </form>
+                        </div>                    
+                    </div>
+                    <div class="noteDescription">
+                        <div class="contentdescription">
+                            <h5 style="font-size: 18px; font-weight: 400;">Notes:</h5>
+                            <div>
+                                <p style="margin: 10px;">Be specific and clear</p>
+                                <p  style="margin: 10px;">Define the subject</p>
+                                <p  style="margin: 10px;">use max of Keywords</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        chatMessagesDiv = document.getElementById('chatMessages');
+        document.getElementById("messageForm").addEventListener("submit", function(event) {
+            message = document.getElementById('messageInput')
+            if(message.value.length > 0){
+                event.preventDefault(); 
+                var formData = new FormData(event.target);
+                appendMessage("You", message.value )
+                fetch("{% url 'sql' %}", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    appendMessage2('GPTData', data.res)
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+                message.value = ''
+            }
+            else{
+                event.preventDefault(); 
+                appendMessage2('GPTData', 'Please enter a valid description and make sure right notes are satified.');
+            }
+        });
+        function appendMessage(sender, message) {
+            var messageDiv = document.createElement('div');
+            messageDiv.innerHTML = '<span>' + sender + ':</span> ' + message;
+            chatMessagesDiv.appendChild(messageDiv);
+        }
+        function appendMessage2(sender, message) {
+            var responseDiv = document.createElement('div');
+            responseDiv.classList.add('response');
+            responseDiv.innerHTML = '<span>' + sender + ':</span> ' + message;
+            chatMessagesDiv.appendChild(responseDiv);
+        }
+    </script>
+</body>
+</html>
